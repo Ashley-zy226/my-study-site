@@ -4,8 +4,8 @@
   "description": "记录每天学习内容和感想的小站",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#faf5f1",
-  "theme_color": "#faf5f1",
+  "background_color": "#f2f7fb",
+  "theme_color": "#f2f7fb",
   "icons": [
     {
       "src": "icon.svg",

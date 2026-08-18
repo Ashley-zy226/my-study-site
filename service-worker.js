@@ -1,11 +1,11 @@
 // 简单的离线缓存：部署到 https 站点后，打开过一次就能离线访问
-const CACHE_NAME = "study-site-v4";
+const CACHE_NAME = "study-site-v8";
 const ASSETS = [
   "./index.html",
   "./style.css",
   "./script.js",
   "./data.js",
-  "./japan-bg.svg",
+  "./hokkaido-winter-bg.svg",
   "./icon.svg",
   "./manifest.json",
 ];

@@ -43,6 +43,19 @@ function getSavedTodoState() {
   }
 }
 
+function renderQr(qrConfig) {
+  const img = document.getElementById("qr-code");
+  const urlEl = document.getElementById("qr-url");
+  if (!img || !urlEl) return;
+
+  const url = (qrConfig && qrConfig.url) || location.href;
+  const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=280x280&margin=8&data=${encodeURIComponent(url)}`;
+
+  img.src = qrUrl;
+  img.alt = qrConfig?.title || "网站二维码";
+  urlEl.textContent = url;
+}
+
 function renderTodos(todos) {
   const container = document.getElementById("todos");
 
@@ -283,6 +296,46 @@ function initMusic(music) {
   audio.addEventListener("pause", () => btn.classList.remove("playing"));
 }
 
+// 底部 Tab 切换
+function initTabs() {
+  const panels = document.querySelectorAll(".tab-panel");
+  const navItems = document.querySelectorAll(".nav-item");
+  const appTitle = document.getElementById("app-title");
+  const titles = {
+    home: "我的学习小站",
+    updates: "学习动态",
+    learn: "学习进度",
+    thoughts: "一些感想",
+  };
+
+  function switchTab(tab) {
+    panels.forEach((panel) => {
+      panel.classList.toggle("active", panel.id === `panel-${tab}`);
+    });
+
+    navItems.forEach((item) => {
+      item.classList.toggle("active", item.dataset.tab === tab);
+    });
+
+    if (appTitle) {
+      appTitle.textContent = titles[tab] || "我的学习小站";
+    }
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+      // 切换后确保当前面板里的内容正常显示
+      const activePanel = document.getElementById(`panel-${tab}`);
+      if (activePanel) {
+        activePanel.querySelectorAll(".reveal").forEach((item) => {
+          item.classList.add("revealed");
+        });
+      }
+  }
+
+  navItems.forEach((item) => {
+    item.addEventListener("click", () => switchTab(item.dataset.tab));
+  });
+}
+
 // 滚动时慢慢出现
 function initReveal() {
   const items = document.querySelectorAll(
@@ -324,6 +377,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   renderProfile(data.profile || {});
+  renderQr(data.qr);
   renderTodos(data.todos || []);
   renderUpdates(data.updates || []);
   renderLearning(data.learning || []);
@@ -337,5 +391,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initTodoToggle();
   initUpdatesToggle();
   initMusic(data.music);
+  initTabs();
   initReveal();
 });

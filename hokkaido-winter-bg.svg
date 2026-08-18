@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#dcebf7"/>
+      <stop offset="55%" stop-color="#eef6fb"/>
+      <stop offset="100%" stop-color="#f7fbff"/>
+    </linearGradient>
+    <linearGradient id="mountainFar" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#c7dbea"/>
+      <stop offset="100%" stop-color="#aac4d8"/>
+    </linearGradient>
+    <linearGradient id="mountainNear" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#dfeaf3"/>
+      <stop offset="100%" stop-color="#b8cdde"/>
+    </linearGradient>
+    <linearGradient id="snow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#e3eef5"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 天空 -->
+  <rect width="1440" height="900" fill="url(#sky)"/>
+
+  <!-- 冬日太阳/光晕 -->
+  <circle cx="1080" cy="180" r="90" fill="#fff7e6" opacity="0.55"/>
+  <circle cx="1080" cy="180" r="55" fill="#fff2d0" opacity="0.8"/>
+
+  <!-- 远山 -->
+  <path d="M0 620 L180 360 L380 620 Z" fill="url(#mountainFar)" opacity="0.7"/>
+  <path d="M280 650 L520 330 L780 650 Z" fill="url(#mountainFar)" opacity="0.8"/>
+  <path d="M680 660 L940 300 L1200 660 Z" fill="url(#mountainFar)" opacity="0.75"/>
+  <path d="M1100 640 L1320 370 L1500 640 Z" fill="url(#mountainFar)" opacity="0.65"/>
+
+  <!-- 近山雪顶 -->
+  <path d="M240 760 L500 430 L780 760 Z" fill="url(#mountainNear)" opacity="0.9"/>
+  <path d="M520 760 L760 470 L980 760 Z" fill="url(#mountainNear)" opacity="0.85"/>
+
+  <!-- 雪地 -->
+  <path d="M0 720 Q360 690 720 720 T1440 720 L1440 900 L0 900 Z" fill="url(#snow)" opacity="0.9"/>
+
+  <!-- 北海道小屋 -->
+  <g opacity="0.75">
+    <rect x="180" y="640" width="130" height="95" fill="#8a6b5a"/>
+    <polygon points="170,645 245,585 320,645" fill="#6d5144"/>
+    <rect x="215" y="670" width="60" height="55" fill="#f2d8b0"/>
+    <rect x="230" y="690" width="30" height="35" fill="#5a4036"/>
+    <rect x="240" y="620" width="12" height="28" fill="#7a5a4a"/>
+    <rect x="150" y="638" width="190" height="14" fill="#ffffff" opacity="0.9"/>
+  </g>
+
+  <!-- 松树 -->
+  <g fill="#5f7d6e" opacity="0.85">
+    <polygon points="950,700 1010,560 1070,700"/>
+    <polygon points="960,640 1010,530 1060,640"/>
+    <polygon points="970,590 1010,500 1050,590"/>
+    <rect x="1000" y="690" width="20" height="40" fill="#4c5f54"/>
+    <polygon points="1210,720 1270,590 1330,720"/>
+    <polygon points="1220,660 1270,560 1320,660"/>
+    <polygon points="1230,620 1270,530 1310,620"/>
+    <rect x="1260" y="710" width="20" height="40" fill="#4c5f54"/>
+  </g>
+
+  <!-- 树上积雪 -->
+  <g fill="#ffffff" opacity="0.85">
+    <ellipse cx="1010" cy="560" rx="45" ry="12"/>
+    <ellipse cx="1010" cy="500" rx="40" ry="10"/>
+    <ellipse cx="1270" cy="590" rx="45" ry="12"/>
+    <ellipse cx="1270" cy="530" rx="40" ry="10"/>
+  </g>
+
+  <!-- 雪花 -->
+  <g fill="#ffffff" opacity="0.7">
+    <circle cx="160" cy="140" r="4"/>
+    <circle cx="280" cy="220" r="3"/>
+    <circle cx="420" cy="100" r="4"/>
+    <circle cx="560" cy="260" r="3"/>
+    <circle cx="700" cy="150" r="4"/>
+    <circle cx="840" cy="240" r="3"/>
+    <circle cx="980" cy="120" r="4"/>
+    <circle cx="1180" cy="280" r="3"/>
+    <circle cx="1320" cy="160" r="4"/>
+    <circle cx="220" cy="420" r="3"/>
+    <circle cx="520" cy="380" r="4"/>
+    <circle cx="900" cy="360" r="3"/>
+    <circle cx="1240" cy="420" r="4"/>
+  </g>
+</svg>
