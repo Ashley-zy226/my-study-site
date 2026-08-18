@@ -17,6 +17,12 @@ const siteData = {
     github: "Ashley_zy226",
   },
 
+  // 背景音乐：把 mp3 放到 music 文件夹里，改这里即可
+  music: {
+    src: "music/bgmusic.mp3",
+    title: "有好听的bgm记得告诉我!",
+  },
+
   // 正在学习的东西
   learning: [
     {
@@ -88,6 +94,12 @@ const siteData = {
       content: "太难了...不够聪明也不够努力呀",
       tags: ["算法", "ACM"],
     },
+    {
+      date: "2026-07-20",
+      title: "成绩出完了",
+      content: "没想象中那么差,但也没那么好",
+      tags: ["绩点"],
+    },
   ],
 
   // 一些感想 / 碎碎念
@@ -98,7 +110,7 @@ const siteData = {
     },
     {
       date: "2026-07-20",
-      content: "出完成绩,大一上end",
+      content: "出完成绩,考的也不算太差呀",
     },
   ],
 };

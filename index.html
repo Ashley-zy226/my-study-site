@@ -32,7 +32,7 @@
     <section class="section">
       <div class="section-head">
         <h2>✅ To Do List</h2>
-        <span class="section-hint">今天要做的事</span>
+        <span class="section-hint">要做的事</span>
       </div>
       <div class="todo-list" id="todos"></div>
     </section>
@@ -44,6 +44,8 @@
         <span class="section-hint">每天进步一点点</span>
       </div>
       <div class="timeline" id="updates"></div>
+        <div class="timeline archive" id="updates-archive"></div>
+        <button class="more-btn hidden" id="toggle-updates" type="button">📚 查看过往学习动态</button>
     </section>
 
     <!-- 正在学 -->
@@ -88,7 +90,11 @@
   </footer>
 
   <!-- 数据文件：以后改这里的内容就可以了 -->
-  <script src="data.js"></script>
+  <audio id="bg-music" preload="none" loop></audio>
+    <button class="music-toggle" id="music-toggle" type="button" aria-label="播放背景音乐">🎵</button>
+    <div class="toast hidden" id="toast"></div>
+
+    <script src="data.js"></script>
   <script src="script.js"></script>
 
   <script>

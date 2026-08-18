@@ -1,5 +1,5 @@
 // 简单的离线缓存：部署到 https 站点后，打开过一次就能离线访问
-const CACHE_NAME = "study-site-v2";
+const CACHE_NAME = "study-site-v4";
 const ASSETS = [
   "./index.html",
   "./style.css",

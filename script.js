@@ -18,6 +18,7 @@ function renderProfile(profile) {
   document.getElementById("bio").textContent = profile.bio || "";
 
   const metaItems = [];
+  if (profile.workplace) metaItems.push(`💼 ${profile.workplace}`);
   if (profile.location) metaItems.push(`📍 ${profile.location}`);
   if (profile.school) metaItems.push(`🏫 ${profile.school}`);
   if (profile.major) metaItems.push(`🎓 ${profile.major}`);
@@ -99,30 +100,59 @@ function initTodoToggle() {
   });
 }
 
+function renderUpdateItem(item) {
+  const tags = (item.tags || [])
+    .map((tag) => `<span class="tag">${escapeHTML(tag)}</span>`)
+    .join("");
+
+  return `
+    <article class="timeline-item">
+      <span class="timeline-date">${escapeHTML(item.date)}</span>
+      <h3 class="timeline-title">${escapeHTML(item.title)}</h3>
+      <p class="timeline-content">${escapeHTML(item.content)}</p>
+      ${tags}
+    </article>
+  `;
+}
+
 function renderUpdates(updates) {
   const container = document.getElementById("updates");
+  const archive = document.getElementById("updates-archive");
+  const toggleBtn = document.getElementById("toggle-updates");
 
   if (!updates || updates.length === 0) {
     container.innerHTML = '<p class="empty-tip">还没有动态，快去写第一条吧～</p>';
+    if (archive) archive.innerHTML = "";
+    if (toggleBtn) toggleBtn.classList.add("hidden");
     return;
   }
 
-  container.innerHTML = updates
-    .map((item) => {
-      const tags = (item.tags || [])
-        .map((tag) => `<span class="tag">${escapeHTML(tag)}</span>`)
-        .join("");
+  const recent = updates.slice(0, 3);
+  const older = updates.slice(3);
 
-      return `
-        <article class="timeline-item">
-          <span class="timeline-date">${escapeHTML(item.date)}</span>
-          <h3 class="timeline-title">${escapeHTML(item.title)}</h3>
-          <p class="timeline-content">${escapeHTML(item.content)}</p>
-          ${tags}
-        </article>
-      `;
-    })
-    .join("");
+  container.innerHTML = recent.map(renderUpdateItem).join("");
+
+  if (older.length > 0 && archive && toggleBtn) {
+    archive.innerHTML = older.map(renderUpdateItem).join("");
+    toggleBtn.classList.remove("hidden");
+    toggleBtn.innerHTML = `📚 查看过往学习动态（${older.length} 条）`;
+  } else {
+    archive.innerHTML = "";
+    toggleBtn.classList.add("hidden");
+  }
+}
+
+function initUpdatesToggle() {
+  const toggleBtn = document.getElementById("toggle-updates");
+  const archive = document.getElementById("updates-archive");
+
+  if (!toggleBtn || !archive) return;
+
+  toggleBtn.addEventListener("click", () => {
+    const isOpen = archive.classList.toggle("open");
+    toggleBtn.classList.toggle("open", isOpen);
+    toggleBtn.innerHTML = isOpen ? "🔼 收起" : `📚 查看过往学习动态（${archive.children.length} 条）`;
+  });
 }
 
 function renderLearning(learning) {
@@ -196,6 +226,63 @@ function renderThoughts(thoughts) {
     .join("");
 }
 
+let toastTimer = null;
+
+function showToast(message) {
+  const toast = document.getElementById("toast");
+  if (!toast) return;
+
+  toast.textContent = message;
+  toast.classList.remove("hidden");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.add("hidden"), 3200);
+}
+
+function initMusic(music) {
+  const audio = document.getElementById("bg-music");
+  const btn = document.getElementById("music-toggle");
+  if (!audio || !btn) return;
+
+  if (!music || !music.src) {
+    btn.classList.add("hidden");
+    return;
+  }
+
+  audio.src = music.src;
+  btn.title = `播放背景音乐：${music.title || ""}`;
+
+  // 浏览器能直接播放的常见格式
+  const supportedAudio = /\.(mp3|m4a|aac|ogg|oga|wav|webm)$/i;
+  const unsupported = !supportedAudio.test(music.src);
+
+  if (unsupported) {
+    btn.title = `⚠️ ${music.title || "当前音乐"} 格式可能无法播放，请换成 mp3/m4a/ogg/wav`;
+  }
+
+  btn.addEventListener("click", () => {
+    if (unsupported) {
+      showToast("⚠️ 当前音乐格式浏览器不支持（.mgg 是 QQ 音乐加密格式），请换成 .mp3 或 .m4a");
+      return;
+    }
+
+    if (audio.paused) {
+      audio.play().then(() => {
+        btn.classList.add("playing");
+        showToast(`🎵 正在播放：${music.title || "背景音乐"}`);
+      }).catch(() => {
+        btn.classList.remove("playing");
+        showToast("⚠️ 播放失败，请确认 music 文件夹里有可播放的 mp3/m4a/ogg 文件");
+      });
+    } else {
+      audio.pause();
+      btn.classList.remove("playing");
+    }
+  });
+
+  audio.addEventListener("play", () => btn.classList.add("playing"));
+  audio.addEventListener("pause", () => btn.classList.remove("playing"));
+}
+
 // 滚动时慢慢出现
 function initReveal() {
   const items = document.querySelectorAll(
@@ -248,5 +335,7 @@ document.addEventListener("DOMContentLoaded", () => {
     `© 2026 ${data.profile?.name || "我的学习小站"} · 用 ❤️ 和 HTML/CSS/JS 制作`;
 
   initTodoToggle();
+  initUpdatesToggle();
+  initMusic(data.music);
   initReveal();
 });
