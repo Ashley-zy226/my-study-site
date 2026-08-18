@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fff6ef"/>
+      <stop offset="55%" stop-color="#ffece2"/>
+      <stop offset="100%" stop-color="#ffe0d3"/>
+    </linearGradient>
+    <linearGradient id="mountain" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#9aa7b8"/>
+      <stop offset="100%" stop-color="#6f7d91"/>
+    </linearGradient>
+    <linearGradient id="city" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#d9c4b8"/>
+      <stop offset="100%" stop-color="#c4a99a"/>
+    </linearGradient>
+    <linearGradient id="pagoda" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#b8937f"/>
+      <stop offset="100%" stop-color="#9c7663"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 天空 -->
+  <rect width="1440" height="900" fill="url(#sky)"/>
+
+  <!-- 太阳 -->
+  <circle cx="1180" cy="180" r="70" fill="#f77b5b" opacity="0.55"/>
+  <circle cx="1180" cy="180" r="52" fill="#ff8a63" opacity="0.75"/>
+
+  <!-- 云 -->
+  <g fill="#ffffff" opacity="0.6">
+    <ellipse cx="360" cy="170" rx="110" ry="24"/>
+    <ellipse cx="430" cy="150" rx="80" ry="20"/>
+    <ellipse cx="900" cy="260" rx="130" ry="26"/>
+    <ellipse cx="980" cy="240" rx="80" ry="18"/>
+  </g>
+
+  <!-- 富士山 -->
+  <path d="M360 900 L590 380 L820 900 Z" fill="url(#mountain)" opacity="0.35"/>
+  <path d="M430 900 L590 430 L710 900 Z" fill="#ffffff" opacity="0.25"/>
+  <path d="M540 900 L590 520 L640 900 Z" fill="#ffffff" opacity="0.35"/>
+
+  <!-- 鸟居 -->
+  <g fill="none" stroke="#c2503a" stroke-width="10" opacity="0.5">
+    <path d="M645 520 L645 900"/>
+    <path d="M760 520 L760 900"/>
+    <path d="M615 540 L790 540"/>
+    <path d="M620 515 L785 515" stroke-width="18"/>
+  </g>
+  <g fill="#c2503a" opacity="0.45">
+    <path d="M610 505 L625 515 L620 525 Z"/>
+    <path d="M790 505 L775 515 L780 525 Z"/>
+  </g>
+
+  <!-- 京都/奈良古镇：五重塔与屋檐 -->
+  <g fill="url(#pagoda)" opacity="0.4">
+    <path d="M240 900 L240 650 L260 650 L260 900 Z"/>
+    <path d="M215 665 L285 665 L285 675 L215 675 Z"/>
+    <path d="M220 685 L280 685 L280 693 L220 693 Z"/>
+    <path d="M225 705 L275 705 L275 711 L225 711 Z"/>
+    <path d="M230 725 L270 725 L270 729 L230 729 Z"/>
+    <path d="M200 660 L300 660 L300 668 L200 668 Z"/>
+    <path d="M235 620 L265 620 L250 595 Z"/>
+  </g>
+
+  <!-- 东京城市剪影 -->
+  <g fill="url(#city)" opacity="0.3">
+    <rect x="1000" y="650" width="70" height="250"/>
+    <rect x="1070" y="600" width="60" height="300"/>
+    <rect x="1130" y="680" width="80" height="220"/>
+    <rect x="1210" y="560" width="55" height="340"/>
+    <rect x="1265" y="640" width="70" height="260"/>
+    <rect x="1335" y="600" width="65" height="300"/>
+    <rect x="1400" y="680" width="60" height="220"/>
+    <rect x="1095" y="620" width="10" height="280"/>
+    <rect x="1240" y="580" width="8" height="320"/>
+  </g>
+
+  <!-- 近景地面 -->
+  <rect y="830" width="1440" height="70" fill="#e8cbbd" opacity="0.5"/>
+
+  <!-- 樱花花瓣 -->
+  <g fill="#ffb7c5" opacity="0.55">
+    <ellipse cx="180" cy="300" rx="9" ry="6" transform="rotate(25 180 300)"/>
+    <ellipse cx="240" cy="220" rx="7" ry="5" transform="rotate(-15 240 220)"/>
+    <ellipse cx="620" cy="180" rx="8" ry="5" transform="rotate(40 620 180)"/>
+    <ellipse cx="750" cy="260" rx="10" ry="6" transform="rotate(-30 750 260)"/>
+    <ellipse cx="1000" cy="140" rx="7" ry="5" transform="rotate(15 1000 140)"/>
+    <ellipse cx="1320" cy="320" rx="9" ry="6" transform="rotate(-20 1320 320)"/>
+    <ellipse cx="350" cy="420" rx="8" ry="5" transform="rotate(35 350 420)"/>
+    <ellipse cx="820" cy="380" rx="7" ry="5" transform="rotate(-45 820 380)"/>
+  </g>
+</svg>

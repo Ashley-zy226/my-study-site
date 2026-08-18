@@ -1,0 +1,17 @@
+{
+  "name": "我的学习小站",
+  "short_name": "学习小站",
+  "description": "记录每天学习内容和感想的小站",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#faf5f1",
+  "theme_color": "#faf5f1",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

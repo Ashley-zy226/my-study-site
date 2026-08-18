@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#faf5f1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="我的学习小站" />
+  <meta name="description" content="我的学习小站：记录每天在学习的东西和一些感想。" />
+  <title>我的学习小站</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" type="image/svg+xml" href="icon.svg" />
+  <link rel="apple-touch-icon" href="icon.svg" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg-decoration"></div>
+
+  <!-- 顶部 -->
+  <header class="hero">
+    <div class="container">
+      <div class="avatar" id="avatar">🧑‍💻</div>
+      <h1 class="name" id="name">你好，我是你的名字</h1>
+      <p class="bio" id="bio">一名正在努力成长的大学生，喜欢写代码、打比赛、学新东西。</p>
+      <div class="meta" id="profile-meta"></div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- To Do List -->
+    <section class="section">
+      <div class="section-head">
+        <h2>✅ To Do List</h2>
+        <span class="section-hint">今天要做的事</span>
+      </div>
+      <div class="todo-list" id="todos"></div>
+    </section>
+
+    <!-- 最近学习动态 -->
+    <section class="section">
+      <div class="section-head">
+        <h2>📖 最近学习动态</h2>
+        <span class="section-hint">每天进步一点点</span>
+      </div>
+      <div class="timeline" id="updates"></div>
+    </section>
+
+    <!-- 正在学 -->
+    <section class="section">
+      <div class="section-head">
+        <h2>🔥 正在学</h2>
+        <span class="section-hint">现在最关注的事</span>
+      </div>
+      <div class="card-grid" id="learning"></div>
+    </section>
+
+    <!-- 已经点亮 -->
+    <section class="section">
+      <div class="section-head">
+        <h2>✨ 已经点亮</h2>
+        <span class="section-hint">学过 / 会一点 / 还会继续</span>
+      </div>
+      <div class="chips" id="learned"></div>
+    </section>
+
+    <!-- 未来想学 -->
+    <section class="section">
+      <div class="section-head">
+        <h2>🧭 未来想学</h2>
+        <span class="section-hint">先立个 Flag</span>
+      </div>
+      <div class="future-list" id="future"></div>
+    </section>
+
+    <!-- 碎碎念 -->
+    <section class="section">
+      <div class="section-head">
+        <h2>💭 一些感想</h2>
+        <span class="section-hint">学习路上的碎碎念</span>
+      </div>
+      <div class="thoughts" id="thoughts"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p id="footer-text">用 ❤️ 和 HTML/CSS/JS 制作</p>
+  </footer>
+
+  <!-- 数据文件：以后改这里的内容就可以了 -->
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+
+  <script>
+    // 只有部署到 http/https 网站时才启用离线缓存；本地 file:// 打开不会报错
+    if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("service-worker.js").catch(() => {});
+      });
+    }
+  </script>
+</body>
+</html>

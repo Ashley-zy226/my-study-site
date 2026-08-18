@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="100" fill="#faf5f1"/>
+  <circle cx="320" cy="130" r="58" fill="#e85d3d"/>
+  <path d="M70 512 L210 220 L340 512 Z" fill="#9aa7b8"/>
+  <path d="M130 512 L210 290 L270 512 Z" fill="#ffffff" opacity="0.9"/>
+  <g fill="none" stroke="#c2503a" stroke-width="14" opacity="0.85">
+    <path d="M300 260 L300 512"/>
+    <path d="M380 260 L380 512"/>
+    <path d="M282 286 L398 286"/>
+    <path d="M285 266 L395 266" stroke-width="22"/>
+  </g>
+  <text x="256" y="470" text-anchor="middle" font-size="72" fill="#e85d3d" font-family="-apple-system, 'PingFang SC', sans-serif">学</text>
+</svg>

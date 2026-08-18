@@ -1,0 +1,497 @@
+/* ===== 全局 ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #faf5f1;
+  --card: rgba(255, 255, 255, 0.82);
+  --text: #3f3a3a;
+  --muted: #8b8580;
+  --primary: #e85d3d;
+  --primary-dark: #c74a2e;
+  --accent: #d99b5b;
+  --line: rgba(230, 210, 195, 0.5);
+  --shadow: 0 10px 30px rgba(120, 90, 70, 0.1);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  line-height: 1.75;
+  color: var(--text);
+  background-color: var(--bg);
+  min-height: 100vh;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 日本风背景：固定在视口，手机上也不会有滚动问题 */
+.bg-decoration {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: url("japan-bg.svg");
+  background-size: cover;
+  background-position: center;
+}
+
+.bg-decoration::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 250, 245, 0.4);
+}
+
+.hero,
+main,
+.footer {
+  position: relative;
+  z-index: 1;
+}
+
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ===== 顶部 ===== */
+.hero {
+  text-align: center;
+  padding: 64px 24px 36px;
+}
+
+.avatar {
+  width: 88px;
+  height: 88px;
+  margin: 0 auto 18px;
+  display: grid;
+  place-items: center;
+  font-size: 44px;
+  background: linear-gradient(135deg, #ffe8d6, #ffd0b5);
+  border-radius: 30px;
+  box-shadow: 0 12px 25px rgba(255, 122, 89, 0.25);
+  transform: rotate(-3deg);
+}
+
+.name {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #2c2522;
+  margin-bottom: 8px;
+}
+
+.bio {
+  font-size: 1.05rem;
+  color: var(--muted);
+  max-width: 520px;
+  margin: 0 auto 16px;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 14px;
+  font-size: 0.9rem;
+  color: #a09a94;
+}
+
+.meta span {
+  background: rgba(255, 255, 255, 0.75);
+  padding: 4px 12px;
+  border-radius: 999px;
+  box-shadow: 0 2px 8px rgba(150, 120, 100, 0.06);
+  backdrop-filter: blur(4px);
+}
+
+/* ===== 主体 ===== */
+main {
+  padding: 16px 0 56px;
+}
+
+.section {
+  margin-bottom: 42px;
+}
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.section-head h2 {
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #332c28;
+}
+
+.section-hint {
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+/* ===== To Do List ===== */
+.todo-list {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  padding: 10px 18px;
+  backdrop-filter: blur(6px);
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 4px;
+  border-bottom: 1px dashed var(--line);
+  font-size: 0.95rem;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+}
+
+.todo-item:hover {
+  background: rgba(255, 240, 232, 0.5);
+}
+
+.todo-item:focus {
+  outline: 2px solid rgba(232, 93, 61, 0.35);
+  outline-offset: 2px;
+}
+
+.todo-item:last-child {
+  border-bottom: none;
+}
+
+.todo-time {
+  min-width: 58px;
+  font-weight: 600;
+  color: var(--primary-dark);
+  font-variant-numeric: tabular-nums;
+}
+
+.todo-task {
+  flex: 1;
+  color: #4f4742;
+}
+
+.todo-status {
+  width: 22px;
+  text-align: center;
+  color: #c9b8ab;
+  font-size: 1.1rem;
+}
+
+.todo-item.done .todo-task {
+  color: #b3a9a0;
+  text-decoration: line-through;
+}
+
+.todo-item.done .todo-status {
+  color: var(--primary);
+}
+
+/* ===== 时间线：学习动态 ===== */
+.timeline {
+  position: relative;
+  padding-left: 26px;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--accent), var(--primary), transparent);
+  border-radius: 2px;
+}
+
+.timeline-item {
+  position: relative;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 16px 20px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(6px);
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -23px;
+  top: 22px;
+  width: 10px;
+  height: 10px;
+  background: var(--primary);
+  border: 3px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px var(--primary);
+}
+
+.timeline-date {
+  display: inline-block;
+  font-size: 0.78rem;
+  color: var(--primary-dark);
+  background: #fff0e8;
+  padding: 2px 10px;
+  border-radius: 999px;
+  margin-bottom: 8px;
+}
+
+.timeline-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.timeline-content {
+  color: #6f6660;
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+}
+
+.tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  background: #f7f1eb;
+  color: #8a6d58;
+  padding: 2px 10px;
+  border-radius: 999px;
+  margin-right: 6px;
+}
+
+/* ===== 正在学卡片 ===== */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 16px;
+}
+
+.learning-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(6px);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.learning-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(150, 120, 100, 0.14);
+}
+
+.learning-card h3 {
+  font-size: 1.05rem;
+  margin-bottom: 6px;
+  color: #332c28;
+}
+
+.learning-card p {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+/* ===== 已点亮 chips ===== */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.chip {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  color: #5f564f;
+  box-shadow: 0 4px 12px rgba(150, 120, 100, 0.06);
+  backdrop-filter: blur(4px);
+}
+
+.chip::before {
+  content: "✓ ";
+  color: var(--primary);
+  font-weight: 700;
+}
+
+/* ===== 未来想学 ===== */
+.future-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.future-item {
+  background: var(--card);
+  border: 1px dashed #e8d9cb;
+  border-radius: 14px;
+  padding: 14px 18px;
+  font-size: 0.95rem;
+  color: #6f6660;
+  box-shadow: 0 4px 12px rgba(150, 120, 100, 0.05);
+  backdrop-filter: blur(4px);
+}
+
+.future-item::before {
+  content: "🌱 ";
+}
+
+/* ===== 碎碎念 ===== */
+.thoughts {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.thought {
+  background: rgba(255, 250, 243, 0.82);
+  border: 1px solid #f5e6d8;
+  border-radius: 16px;
+  padding: 18px 22px;
+  backdrop-filter: blur(6px);
+}
+
+.thought-date {
+  display: block;
+  font-size: 0.78rem;
+  color: #c09a7a;
+  margin-bottom: 4px;
+}
+
+.thought-content {
+  font-size: 0.98rem;
+  color: #5f564f;
+}
+
+/* ===== 动效 ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.empty-tip {
+  color: var(--muted);
+  font-size: 0.92rem;
+  background: var(--card);
+  border: 1px dashed var(--line);
+  border-radius: 14px;
+  padding: 18px;
+  text-align: center;
+}
+
+/* ===== 页脚 ===== */
+.footer {
+  text-align: center;
+  padding: 28px 24px 36px;
+  color: #b3a9a0;
+  font-size: 0.88rem;
+}
+
+/* ===== 响应式 ===== */
+@media (max-width: 600px) {
+  .container {
+    padding: 0 18px;
+  }
+
+  .hero {
+    padding: 44px 18px 24px;
+  }
+
+  .name {
+    font-size: 1.6rem;
+  }
+
+  .bio {
+    font-size: 0.98rem;
+  }
+
+  .meta {
+    gap: 6px 10px;
+    font-size: 0.82rem;
+  }
+
+  .meta span {
+    padding: 6px 12px;
+  }
+
+  main {
+    padding: 12px 0 40px;
+  }
+
+  .section {
+    margin-bottom: 34px;
+  }
+
+  .section-head h2 {
+    font-size: 1.25rem;
+  }
+
+  .section-head {
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .timeline {
+    padding-left: 22px;
+  }
+
+  .timeline-item {
+    padding: 14px 16px;
+  }
+
+  .timeline-item::before {
+    left: -19px;
+  }
+
+  .todo-item {
+    gap: 10px;
+    min-height: 48px;
+    padding: 12px 6px;
+  }
+
+  .todo-time {
+    min-width: 48px;
+    font-size: 0.88rem;
+  }
+
+  .card-grid,
+  .future-list {
+    grid-template-columns: 1fr;
+  }
+
+  .learning-card {
+    padding: 18px;
+  }
+
+  .footer {
+    padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+  }
+}
