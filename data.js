@@ -73,10 +73,11 @@ const siteData = {
 
   // To Do List：时间 + 任务，简约一点
   todos: [
-    { time: "8/18", task: "2.3 线性代数", done: false },
-    { time: "8/18", task: "2.4 微积分", done: false },
-    { time: "8/18", task: "2.5 自动微分", done: false },
-    { time: "8/18", task: "更新今天的学习动态", done: false },
+    { time: "8/19", task: "3.1 线性回归", done: false },
+    { time: "8/19", task: "3.2 线性回归的简洁实现", done: false },
+    { time: "8/19", task: "2.2 随机变量的数学期望", done: false },
+    { time: "8/19", task: "2.3 随机变量的方差与标准差", done: false },
+    { time: "8/19", task: "Leetcode第500场周赛", done: false },
     { time: "9/10", task: "数学建模竞赛", done: false },
   ],
 
