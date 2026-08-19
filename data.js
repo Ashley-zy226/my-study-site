@@ -78,7 +78,6 @@ const siteData = {
     { time: "8/19", task: "2.2 随机变量的数学期望", done: false },
     { time: "8/19", task: "2.3 随机变量的方差与标准差", done: false },
     { time: "8/19", task: "Leetcode第500场周赛", done: false },
-    { time: "9/10", task: "数学建模竞赛", done: false },
   ],
 
   // 学习动态 / 日志：按时间倒序展示

@@ -40,9 +40,15 @@ body {
   inset: 0;
   z-index: 0;
   pointer-events: none;
+  transition: background-image 0.4s ease;
   background-image: url("hokkaido-winter-bg.svg");
   background-size: cover;
   background-position: center;
+}
+
+/* 学习分栏使用原来的日本风背景 */
+.bg-decoration[data-tab="learn"] {
+  background-image: url("japan-bg.svg");
 }
 
 .bg-decoration::after {
@@ -372,6 +378,31 @@ main {
   padding: 2px 10px;
   border-radius: 999px;
   margin-right: 6px;
+}
+
+/* ===== 导出复盘按钮 ===== */
+.export-btn {
+  display: block;
+  margin: 14px auto 0;
+  padding: 10px 20px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--card);
+  color: var(--primary-dark);
+  font-size: 0.88rem;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(6px);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.export-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(80, 120, 150, 0.14);
+}
+
+.export-btn:active {
+  transform: scale(0.96);
 }
 
 /* ===== 过往学习动态 ===== */

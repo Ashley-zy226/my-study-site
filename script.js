@@ -296,6 +296,70 @@ function initMusic(music) {
   audio.addEventListener("pause", () => btn.classList.remove("playing"));
 }
 
+function initExportReview(todos) {
+  const btn = document.getElementById("export-review");
+  if (!btn) return;
+
+  btn.addEventListener("click", async () => {
+    const saved = getSavedTodoState();
+    const allItems = (todos || []).map((item) => {
+      const key = getTodoKey(item);
+      const done = key in saved ? saved[key] : !!item.done;
+      return { ...item, done };
+    });
+
+    if (allItems.length === 0) {
+      showToast("还没有任务，先添加一些 To Do 吧～");
+      return;
+    }
+
+    const now = new Date();
+    const dateStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
+    const lines = [`## 今日复盘 ${dateStr}`, ""];
+
+    allItems.forEach((item) => {
+      const time = item.time ? `${item.time} ` : "";
+      const status = item.done ? "[x]" : "[ ]";
+      lines.push(`- ${status} ${time}${item.task || ""}`.trim());
+    });
+
+    const markdown = lines.join("\n");
+
+    try {
+      await navigator.clipboard.writeText(markdown);
+      showToast("✅ 已复制 Markdown，去笔记里粘贴吧");
+    } catch {
+      const textarea = document.createElement("textarea");
+      textarea.value = markdown;
+      textarea.style.position = "fixed";
+      textarea.style.left = "16px";
+      textarea.style.right = "16px";
+      textarea.style.bottom = "110px";
+      textarea.style.height = "140px";
+      textarea.style.zIndex = "60";
+      textarea.style.padding = "10px";
+      textarea.style.borderRadius = "12px";
+      textarea.style.fontSize = "0.85rem";
+      document.body.appendChild(textarea);
+      textarea.select();
+
+      let copied = false;
+      try {
+        copied = document.execCommand("copy");
+      } catch {
+        copied = false;
+      }
+
+      if (copied) {
+        showToast("✅ 已复制 Markdown，去笔记里粘贴吧");
+        document.body.removeChild(textarea);
+      } else {
+        showToast("⚠️ 自动复制失败，请手动选择下面的文本复制");
+      }
+    }
+  });
+}
+
 // 底部 Tab 切换
 function initTabs() {
   const panels = document.querySelectorAll(".tab-panel");
@@ -321,7 +385,13 @@ function initTabs() {
       appTitle.textContent = titles[tab] || "我的学习小站";
     }
 
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    // 不同 Tab 使用不同背景
+      const bg = document.querySelector(".bg-decoration");
+      if (bg) {
+        bg.dataset.tab = tab;
+      }
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
       // 切换后确保当前面板里的内容正常显示
       const activePanel = document.getElementById(`panel-${tab}`);
       if (activePanel) {
@@ -389,6 +459,7 @@ document.addEventListener("DOMContentLoaded", () => {
     `© 2026 ${data.profile?.name || "我的学习小站"} · 用 ❤️ 和 HTML/CSS/JS 制作`;
 
   initTodoToggle();
+  initExportReview(data.todos || []);
   initUpdatesToggle();
   initMusic(data.music);
   initTabs();
